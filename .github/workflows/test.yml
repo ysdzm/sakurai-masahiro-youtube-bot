@@ -19,6 +19,7 @@ jobs:
       - name: Run main.py script
         env:
             API_KEY: ${{ secrets.API_KEY }} # secretsに登録した環境変数
+            WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }} # DiscordのWebhook URLを環境変数から取得
         run: python main.py
 
       - name: Commit changes
