@@ -23,30 +23,41 @@ def get_new_videos(api_key, channel_id, max_results=10):
     # APIリクエストの送信
     response = request.execute()
 
-    # 結果の処理
+    # 動画の情報を取得
     videos = []
     for item in response['items']:
         video = {
             'title': item['snippet']['title'],
             'video_id': item['id']['videoId'],
-            'thumbnail_url': item['snippet']['thumbnails']['default']['url']
+            'published_at': item['snippet']['publishedAt']
         }
         videos.append(video)
 
     return videos
 
+def save_video_id(video_id, filename='latest_video_id.txt'):
+    with open(filename, 'w') as f:
+        f.write(video_id)
+
+def get_latest_video_id(filename='latest_video_id.txt'):
+    with open(filename, 'r') as f:
+        return f.read().strip()
+
 # APIキーを取得
 api_key = get_api_key()
 
 # チャンネルIDを指定
-channel_id = 'UC1EB8moGYdkoZQfWHjh7Ivw'
+channel_id = 'UC5CTV3JSdrlo5Pa42QkK8SA'
 
-# 新着動画を取得
+# 最新の動画のVideo IDを取得
+latest_video_id = get_latest_video_id()
+
+# 最新の10件の動画を取得
 new_videos = get_new_videos(api_key, channel_id)
 
-# 新着動画の情報を出力
+# 最新の動画よりも古い動画のVideo IDを出力し、Video IDを更新
 for video in new_videos:
-    print('Title:', video['title'])
-    print('Video ID:', video['video_id'])
-    print('Thumbnail URL:', video['thumbnail_url'])
-    print('---')
+    if video['video_id'] < latest_video_id:
+        print('Video ID:', video['video_id'])
+        save_video_id(video['video_id'])
+        break
