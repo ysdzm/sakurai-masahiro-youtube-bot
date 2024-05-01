@@ -57,7 +57,12 @@ new_videos = get_new_videos(api_key, channel_id)
 
 # 最新の動画よりも古い動画のVideo IDを出力し、Video IDを更新
 for video in new_videos:
-    if video['video_id'] < latest_video_id:
+    if video['video_id'] != latest_video_id:
         print('Video ID:', video['video_id'])
-        save_video_id(video['video_id'])
+    else:
         break
+
+# 最新の動画IDを更新
+if new_videos:
+    latest_video_id = new_videos[0]['video_id']
+    save_video_id(latest_video_id)
