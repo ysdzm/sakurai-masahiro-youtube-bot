@@ -1,11 +1,12 @@
-name: Manual Workflow
+name: Weekly Workflow
 
 on:
-  workflow_dispatch: # 手動でトリガーする
+  schedule:
+    - cron: "30 0 * * 1" # 毎週月曜日の0:30に実行する
 
 jobs:
-  manual_job:
-    name: Execute Manually
+  weekly_job:
+    name: Execute Weekly
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
