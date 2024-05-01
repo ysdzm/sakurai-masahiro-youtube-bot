@@ -11,5 +11,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2 # リポジトリをチェックアウト
 
-      - name: Run hello.py script
-        run: python hello.py
+      - name: Run main.py script
+        run: python main.py
