@@ -11,7 +11,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2 # リポジトリをチェックアウト
 
-      - name: Run a shell command
-        run: |
-          echo "This workflow was triggered manually."
-          # ここに実行したいコマンドを追加
+      - name: Run hello.py script
+        run: python hello.py
