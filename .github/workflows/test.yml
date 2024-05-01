@@ -23,8 +23,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
           git add latest_video_id.txt
-          git commit -m "Update latest video ID"
-          git push
+          git commit -m "Auto-publish changes from GitHub Actions"
+          git push origin main
