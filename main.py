@@ -68,7 +68,7 @@ for video in new_videos:
         # Discordにメッセージを送信
         webhook_url = get_webhook_url()
         message = {
-            "username": "桜井政博のゲーム作るには 新着通知bot", 
+            "username": "桜井政博のゲーム作るには 新着通知bot（毎週月曜更新）", 
             "avatar_url": "https://yt3.googleusercontent.com/aoouNzNe8R3Blcmy8EghybnFbCsbexbjK6gBi6Mapli0xpt5r-mubIpODo1IGPr54eyULZs=s176-c-k-c0x00ffffff-no-rj", 
             "content": f"https://www.youtube.com/watch?v={video['video_id']}"
             }
